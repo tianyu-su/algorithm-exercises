@@ -48,12 +48,15 @@ int kmp_matches(char *text, char *pattern, int *next, int *res_indexs){
 //i 指针指向主串代表后缀和，j 指针指向模式串代表前缀和
 void get_next(char *pattern, int *next){
 	memset(next, 0, sizeof(next));
-	next[0] = -	1;
+	next[0] = -1;
 	int i = 0, j = -1, pattern_len = strlen(pattern);
 	while(i < pattern_len){
 		if(j == -1 || pattern[i] == pattern[j]) {
 			i++;j++;
-			next[i] = j;
+			//next[i] = j;
+			//较之前next数组求法，改动判断, 优化失配字符和回溯字符一样时继续失配，
+			//改进为失配遇到相同字符直接回溯到源头，不需要再次失配
+			next[i] = (pattern[i] == pattern[j]) ? next[j] : j;
 		}
 		else j = next[j];
 	}
@@ -64,8 +67,9 @@ void get_next(char *pattern, int *next){
 int main(int argc, char const *argv[])
 {
 	/* code */
-	char *src="BAPC";
-	char *p="BAPC";
+	char *src="cccababaac";
+	char *p="ababaa";
+
 	int* next = new int[strlen(p)];
 	get_next(p, next);
 	int res = kmp_first_match(src, p, next);
