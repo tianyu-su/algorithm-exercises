@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <ctime>
+#include <cmath>
 using namespace std;
 
 string LCS_continuous(string str1,string str2)
@@ -43,8 +45,7 @@ string LCS_continuous(string str1,string str2)
 
 int main(int argc, char const *argv[])
 {
-    string str1="ababila";
-    string str2="alibaba";
-    cout<<LCS_continuous(str1,str2);
+   int a=sqrt(15);
+   cout<<a;
     return 0;
 }
