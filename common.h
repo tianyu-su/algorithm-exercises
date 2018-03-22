@@ -4,6 +4,12 @@
 #include <iostream>
 
 
+#define max3(x, y, z) max(max((x), (y)), (z))
+#define min3(x, y, z) min(mix((x), (y)), (z))
+#define pb push_back
+#define mk make_pair
+#define ll long long
+
 
 using namespace std;
 
