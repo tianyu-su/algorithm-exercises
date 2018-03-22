@@ -111,8 +111,8 @@ int lcs_consecutive_length_dp_optimize(char *str1, char *str2){
 		for(int j = 0; j < str1_len; j++){
 			int tmp = vec[j+1];
 			vec[j+1] = (str1[j] == str2[i] ? vec[0] + 1 : 0);
-			str_index_len[j] = (vec[j+1]>str_index_len[j]) ? vec[j+1] : str_index_len[j];
-			max_len = max_len < vec[j+1]? vec[j+1] : max_len;
+			str_index_len[j] = (vec[j+1] > str_index_len[j]) ? vec[j+1] : str_index_len[j];
+			max_len = max_len < vec[j+1] ? vec[j+1] : max_len;
 			vec[0] = tmp;				//左上角元素
 		}
 	}
