@@ -6,12 +6,7 @@
 (核心：将字符串翻转，找这两个的最长公共子序列就是那个回文序列)
 */
 
-#include <iostream>
-#include <algorithm>
-#include <cstring>
-#include <vector>
-
-using namespace std;
+#include "../common.h"
 
 
 //思路：通过判断两个字符串最后一位是否相等分情况
@@ -80,6 +75,7 @@ void lcs_dp(char *str, vector<vector<int> > &vec, int i, int j){
 int lcs_length_dp_optimize(char *str1, char *str2){
 	int str1_len = strlen(str1);
 	int str2_len = strlen(str2); 
+	// vector 长度要是 len + 1 因为 第零位是临时位，不用做存储信息
 	vector<int> vec(str1_len+1, 0);
 	for(int i = 0; i < str2_len; i++){
 		vec[0] = 0;			//a[0] 充当了左边和左上角双重作用，在j=0时
@@ -91,7 +87,6 @@ int lcs_length_dp_optimize(char *str1, char *str2){
 				vec[j+1] = max(vec[j+1], vec[j]);
 			vec[0] = tmp;
 		}
-
 	}
 	return vec[str1_len];
 }
@@ -110,9 +105,10 @@ int lcs_consecutive_length_dp_optimize(char *str1, char *str2){
 		vec[0] = 0;
 		for(int j = 0; j < str1_len; j++){
 			int tmp = vec[j+1];
+			// 因为要求的是连续最长字串，因此状态转移只能是末尾相同，进行转移
 			vec[j+1] = (str1[j] == str2[i] ? vec[0] + 1 : 0);
-			str_index_len[j] = (vec[j+1] > str_index_len[j]) ? vec[j+1] : str_index_len[j];
-			max_len = max_len < vec[j+1] ? vec[j+1] : max_len;
+			str_index_len[j] = max(vec[j + 1], str_index_len[j]);// (vec[j+1] > str_index_len[j]) ? vec[j+1] : str_index_len[j];
+			max_len = max(max_len, vec[j + 1]);// max_len < vec[j+1] ? vec[j+1] : max_len;
 			vec[0] = tmp;				//左上角元素
 		}
 	}

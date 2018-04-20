@@ -9,7 +9,8 @@
 O(n^2)
 dp[i] 代表当前字符可到达的最长升序长度
 */
-int lis_n2(int data[], int len){
+/**错误的 n*n 算法 ***/
+int lis_n2_wrong(int data[], int len){
 	int *dp = new int[len];
 	int ans = 1;
 	//初始状态,自身算长度 1
@@ -19,8 +20,11 @@ int lis_n2(int data[], int len){
 	for(int i = 1; i < len; i++){
 		int j = i - 1;
 		while(j >= 0){
+			//这是错误的算法。。。。 example: 2 5 3 4 1 7 6 
 			if(data[i] > data[j]){
 				dp[i] = dp[j] + 1;
+				
+				//不能遇到第一个小的就停止，应该和 j 前面的所有数字进行比较，正确删除 Break;
 				break;
 			}
 			j--;
@@ -33,6 +37,28 @@ int lis_n2(int data[], int len){
 }
 
 
+
+int lis_n2(int data[], int len){
+	int *dp = new int[len];
+	int ans = 1;
+	//初始状态,自身算长度 1
+	fill(dp, dp + len, 1);
+
+	//这个 i 是从 1 开始，不然下面 dp[j] 越界
+	for(int i = 0; i < len; i++){
+		for(int j = 0; j < i; j++){
+			if(data[j] < data[i])
+				dp[i] = max(dp[i], dp[j] + 1);
+		}
+		ans = max(ans, dp[i]);
+	}
+
+	delete dp;
+	return ans;
+}
+
+
+
 /*
 O(nlogn)
 dp[i] 代表最长子序列为 i 时, 序列最末尾的值
@@ -41,6 +67,7 @@ dp[i] 代表最长子序列为 i 时, 序列最末尾的值
 int lis_nlogn(int data[], int len){
 	int *dp = new int[len];
 	int ans = 0;
+
 	for(int i = 0; i < len; i++){
 		if(ans == 0 || data[i] > data[i-1]){
 			dp[ans] = data[i];
@@ -51,8 +78,7 @@ int lis_nlogn(int data[], int len){
 			dp[index] = data[i];
 		}
 	}
-
-	delete dp;
+	delete[] dp;
 	return ans;
 }
 
@@ -74,14 +100,15 @@ int lis_nlogn_optimize(int data[], int len){
 
 int main(int argc, char const *argv[])
 {
-	int a[] = {2,1,5,3,6,4,8,9,7};
+	// int a[] = {2,1,5,3,6,4,8,9,7};
+	int a[] ={2, 5, 3, 4, 1, 7, 6};
 	//int a[] = {9,8,7,6,5,4,3,2,1};
 
 	int len = sizeof(a) / sizeof(int);
 
 	cout<<"lis_n2:"<<lis_n2(a, len)<<endl;
 	cout<<"lis_nlogn:"<<lis_nlogn(a, len)<<endl;
-	cout<<"lis_nlogn_d:"<<lis_nlogn_d(a, len)<<endl;
+	cout<<"lis_nlogn_optimize:"<<lis_nlogn_optimize(a, len)<<endl;
 	return 0;
 }
 

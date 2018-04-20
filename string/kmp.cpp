@@ -2,10 +2,7 @@
 			 https://www.cnblogs.com/zhangtianq/p/5839909.html    优化next数组
 			 */
 //problems: poj 3461
-#include <iostream>
-#include <cstring>
-#include <cstdio>
-using namespace std;
+#include "../common.h"
 
 
 //返回主串中第一次出现位置
