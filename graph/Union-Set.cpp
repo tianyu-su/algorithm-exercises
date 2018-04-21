@@ -30,9 +30,11 @@ int find_root(int x){
 
 
 //合并两个集合，小树合并到大树
-void union_set(int x, int y){
+bool union_set(int x, int y){
 	int x_root = find(x);
 	int y_root = find(y);
+	//如果是同一个集合，不可以合并，否则集合大小发生改变
+	if(x_root == y_root) return false;
 	int cnt = parent[x_root] + parent[y_root];
 	if(parent[x_root] < parent[y_root]){
 		//x_root 树大
@@ -42,6 +44,7 @@ void union_set(int x, int y){
 		parent[y_root] = cnt;
 		parent[x_root] = y_root;
 	}	
+	return true;
 }
 
 
