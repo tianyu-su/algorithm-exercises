@@ -85,7 +85,7 @@
 ## M进制中 N! 末尾连续零的个数
 1. 有上面的例子我们可以推出
 
-   ![1532573505029](E:\OUC\ACM\algorithm-exercises\mathematics\1532573505029.png)
+   ![1532573505029](https://raw.githubusercontent.com/BlackCatSheriff/algorithm-exercises/master/mathematics/1532573505029.png)
 
 2. 实现代码
 
