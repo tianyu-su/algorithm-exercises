@@ -33,3 +33,4 @@
 
 # special files
 test.cpp
+*.html
