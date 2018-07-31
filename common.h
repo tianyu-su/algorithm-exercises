@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <cstring>
+#include <string>
 #include <cmath>
 #include <iostream>
 #include <map>
@@ -20,11 +21,15 @@ using namespace std;
 #define pll pair<long long, long long>
 
 
-
 #define debug_l(a) cout << #a << " " << (a) << endl
 #define debug_b(a) cout << #a << " " << (a) << " "
 #define testin(filename) freopen((filename) ,"r",stdin)
 #define testout(filename) freopen((filename) ,"w",stdout)
+
+
+#define close_sync (ios::sync_with_stdio(false))
+
+
 
 typedef long long ll;
 typedef unsigned long long ull;
