@@ -14,6 +14,7 @@ using namespace std;
 
 #define max3(x, y, z) max(max((x), (y)), (z))
 #define min3(x, y, z) min(mix((x), (y)), (z))
+#define mset(a,b) memset((a),(b),(sizeof(a)))
 #define pb push_back
 #define ppb pop_back
 #define mk make_pair
@@ -27,7 +28,7 @@ using namespace std;
 #define testout(filename) freopen((filename) ,"w",stdout)
 
 
-#define close_sync (ios::sync_with_stdio(false))
+#define IOS ios::sync_with_stdio(false);cin.tie(0)
 
 
 
@@ -52,3 +53,5 @@ void print_arr(T *arr, int arr_len)
 		cout << arr[i] << " ";
 	cout << endl;
 }
+
+/*==================================begin=======================================*/
