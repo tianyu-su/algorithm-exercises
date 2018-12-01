@@ -80,7 +80,7 @@ int lcs_length_dp_optimize(char *str1, char *str2){
 	for(int i = 0; i < str2_len; i++){
 		vec[0] = 0;			//a[0] 充当了左边和左上角双重作用，在j=0时
 		for(int j = 0; j < str1_len; j++){
-			int tmp = vec[j+1];
+			int tmp = vec[j+1];		//记录左上角的元素，为下一次准备
 			if(str1[j] == str2[i])
 				vec[j+1] = vec[0] + 1;
 			else
@@ -135,21 +135,19 @@ int main(int argc, char const *argv[])
 	int str1_len = strlen(str1);
 	int str2_len = strlen(str2);
 	
-
-
+	
 	//这种方式直接初始化好了
 	// vector<vector<int> > vec (str1_len+1, vector<int>(str2_len+1,0));
 	vector<vector<int> > vec (str1_len+1);
 	cout<<"dp_length:"<<lcs_length_dp(str1,str2,vec)<<endl;
 	cout<<"lcs:";
 	lcs_dp(str1,vec,str1_len,str2_len);
-	// LCS(str1,vec,strlen(str1)-1,strlen(str2)-1);
 	
 	cout<<endl;
 
 	cout<<"dp_length_optimize_space:" << lcs_length_dp_optimize(str1,str2);
 	cout<<endl;
-	// cout<< "\nrecursion_length:"<<lcs_recursion(str1,str2,strlen(str1),strlen(str2))<<endl;
+	cout<< "\nrecursion_length:"<<lcs_recursion(str1,str2,strlen(str1),strlen(str2))<<endl;
 
 
 	//最长公共连续子序列

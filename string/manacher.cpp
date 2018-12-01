@@ -43,7 +43,7 @@ int manacher(char *pre_src, char special_char){
 		}
 		max_len = max(max_len ,R[i]);
 	}
-	return max_len - 1;			//回文半径-1 就是原来字符串的回文长度(由 2*R[i]-R[i]-1)
+	return max_len - 1;			//回文半径 -1 就是原来字符串的回文长度(由 2*R[i]-R[i]-1)
 }
 
 int main(int argc, char const *argv[])

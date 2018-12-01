@@ -81,7 +81,7 @@ int main(int argc, char const *argv[])
 
 	inverse_recursion(23);
 	for (int i = 1; i <= 22; i++) {
-		debug_b(inv[i]), debug_b(inverse_ext_gcd(i, 23)),debug_l(inverse_quick_pow( i,23));
+		debug_b(inv[i]), debug_b(inverse_ext_gcd(i, 23)),debug_l(inverse_quick_pow(i,23));
 	}
 
 	return 0;

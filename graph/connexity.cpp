@@ -16,7 +16,7 @@ int find_root (int n) {
 
 //连通分支数 = parent 中 -1 个数
 bool union_solve() {
-	memset(parent, -1, sizeof(parent));
+	mset(parent, 0xff, sizeof(parent));
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			if (mapp[i][j]) {
@@ -32,7 +32,7 @@ bool union_solve() {
 	for (int i = 0; i < n; i++)
 		if (parent[i] == -1)
 			cnt++;
-	return cnt == 1 ? true : false;
+	return cnt == 1;
 }
 
 
@@ -78,7 +78,7 @@ bool bfs_solve() {
 }
 
 
-//连通分支数为主对角线上 单位阵的个数
+// 连通分支数为主对角线上 单位阵的个数
 // 利用传递闭包求解
 bool warshall_solve() {
 	for (int k = 0; k < n; k++) {

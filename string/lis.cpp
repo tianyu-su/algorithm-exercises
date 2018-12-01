@@ -61,15 +61,20 @@ int lis_n2(int data[], int len){
 
 /*
 O(nlogn)
-dp[i] 代表最长子序列为 i 时, 序列最末尾的值
+dp[i] 代表 长度为 i 的字符串, 序列最末尾的值
+！！！ dp 数组不是 lis 串，仅仅是 i 长度的末尾字符， 
+		dp[i] 随着 i 的增大，dp[i] 没有顺序关系
+		仅仅是表示最末尾字符而已
 */
 
 int lis_nlogn(int data[], int len){
 	int *dp = new int[len];
-	int ans = 0;
+	int ans = 1;
+	//初始化第一个
+	dp[0] = data[0];
 
-	for(int i = 0; i < len; i++){
-		if(ans == 0 || data[i] > data[i-1]){
+	for(int i = 1; i < len; i++){
+		if(data[i] > data[i-1]){
 			dp[ans] = data[i];
 			ans++;
 		}

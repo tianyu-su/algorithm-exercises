@@ -37,7 +37,7 @@ int recursion(int *data, int left, int right){
 		s2 = max(s2, rights);
 	}
 
-	return max(max(leftsum, rightsum), s1 + s2);
+	return max3(leftsum, rightsum, s1 + s2);
 
 }
 
